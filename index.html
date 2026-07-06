@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0" />
+<meta name="theme-color" content="#0a4d68" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Pula Trip" />
+<meta name="description" content="Offline trip companion for Pula, Croatia — 9–14 July 2026." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a4d68'/%3E%3Ccircle cx='50' cy='38' r='16' fill='%23f4b23e'/%3E%3Cpath d='M8 70 Q29 58 50 70 T92 70 V100 H8 Z' fill='%232a9d8f'/%3E%3C/svg%3E" />
+<title>Pula Trip · 9–14 July 2026</title>
+<!-- Icons: Lucide (https://lucide.dev) — ISC License — inlined below for full offline use -->
+<style>
+  :root{
+    --sea-deep:#0a4d68; --sea:#1b7a8f; --teal:#2a9d8f; --aqua:#48cae4; --aqua-soft:#ade8f4;
+    --terra:#c1502e; --coral:#ef6f53; --sun:#f4b23e; --gold:#e8a13a;
+    --bg:#f5f1e8; --bg-2:#efe8da; --surface:#ffffff; --surface-2:#fbf7ef;
+    --ink:#16232c; --ink-soft:#41545f; --muted:#7c8c95; --line:#e7ded0;
+    --glass:rgba(255,255,255,.72); --glass-brd:rgba(255,255,255,.6);
+    --shadow:0 8px 26px rgba(16,45,60,.10); --shadow-lg:0 16px 40px rgba(16,45,60,.16);
+    --radius:20px; --radius-sm:14px; --nav-h:64px;
+    --ok:#2a9d8f; --warn:#e08a2e; --danger:#d6453b;
+    --grad-hero:linear-gradient(150deg,#073b52 0%,#0a4d68 32%,#1b7a8f 60%,#ef6f53 118%);
+    --grad-sun:radial-gradient(circle at 78% 26%,rgba(244,178,62,.95),rgba(244,178,62,0) 42%);
+  }
+  html[data-theme="dark"]{
+    --bg:#0c1922; --bg-2:#0a141b; --surface:#132531; --surface-2:#0f1f29;
+    --ink:#eaf2f5; --ink-soft:#b7c7cf; --muted:#7f96a1; --line:#1e3543;
+    --glass:rgba(19,37,49,.72); --glass-brd:rgba(120,160,175,.18);
+    --shadow:0 8px 26px rgba(0,0,0,.35); --shadow-lg:0 18px 42px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.5;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom));
+    overflow-x:hidden;
+  }
+  a{color:var(--sea);}
+  h1,h2,h3{margin:0;line-height:1.2;letter-spacing:-.01em}
+  .wrap{max-width:640px;margin:0 auto;padding:0 16px}
+
+  /* ---------- Icons (Lucide) ---------- */
+  .ico{width:1.1em;height:1.1em;display:inline-block;vertical-align:-.18em;stroke:currentColor;fill:none;
+    stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  .tile .ti .ico{width:21px;height:21px}
+  .sec-head .ic .ico{width:19px;height:19px}
+  .row .ri .ico{width:20px;height:20px}
+  .step .sic .ico{width:18px;height:18px}
+  .day .daynum .di .ico{width:20px;height:20px}
+  nav.tabbar button .ico{width:23px;height:23px}
+  .note .ni .ico{width:18px;height:18px}
+  .chip .ico{width:16px;height:16px}
+  .btn .ico{width:15px;height:15px}
+  .brand .dot .ico{width:15px;height:15px}
+  .icon-btn .ico{width:19px;height:19px}
+  .sos a .si .ico{width:20px;height:20px}
+  .today-hero .big .ico{width:.86em;height:.86em;vertical-align:-.1em}
+
+  /* ---------- Top hero ---------- */
+  .hero{position:relative;overflow:hidden;background:var(--grad-hero);color:#fff;
+    padding:calc(env(safe-area-inset-top) + 18px) 16px 60px;}
+  .hero::before{content:"";position:absolute;inset:0;background:var(--grad-sun);pointer-events:none}
+  .hero-top{max-width:640px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:.02em}
+  .brand .dot{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.16);display:grid;place-items:center;backdrop-filter:blur(6px)}
+  .hero-body{max-width:640px;margin:14px auto 0;position:relative;z-index:2}
+  .hero-body h1{font-size:30px;font-weight:850;text-shadow:0 2px 18px rgba(0,0,0,.22)}
+  .hero-sub{margin-top:6px;font-size:14px;opacity:.94;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+  .hero-sub b{font-weight:700}
+  .hero-sub .ico{width:15px;height:15px;opacity:.9;margin-right:3px}
+  .hero-wave{position:absolute;left:0;right:0;bottom:-1px;z-index:1;display:block;width:100%}
+  .icon-btn{appearance:none;border:0;background:rgba(255,255,255,.16);color:#fff;width:38px;height:38px;border-radius:12px;
+    display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);transition:transform .15s,background .2s}
+  .icon-btn:active{transform:scale(.92)}
+
+  /* ---------- Screens ---------- */
+  main{margin-top:-30px;position:relative;z-index:3}
+  .screen{display:none;animation:fade .32s ease}
+  .screen.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .section-pad{padding-bottom:26px}
+
+  /* ---------- Cards ---------- */
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:16px;margin:14px 0}
+  .card.flush{padding:0;overflow:hidden}
+  .glass{background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--glass-brd)}
+  .eyebrow{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .sec-head{display:flex;align-items:center;gap:11px;margin:22px 2px 4px}
+  .sec-head .ic{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;flex:none;color:#fff}
+  .sec-head h2{font-size:20px}
+  .sec-head p{margin:2px 0 0;font-size:12.5px;color:var(--muted)}
+  .lead{color:var(--ink-soft);font-size:14.5px}
+
+  /* pills / tags */
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:999px;
+    background:var(--surface-2);border:1px solid var(--line);color:var(--ink-soft);white-space:nowrap}
+  .pill.free{color:#0f7a5a;background:rgba(42,157,143,.12);border-color:rgba(42,157,143,.28)}
+  .pill.cost{color:var(--terra);background:rgba(193,80,46,.10);border-color:rgba(193,80,46,.24)}
+  .pill.move{color:var(--sea);background:rgba(27,122,143,.12);border-color:rgba(27,122,143,.26)}
+  .pill.must{color:#a6431f;background:rgba(239,111,83,.14);border-color:rgba(239,111,83,.3)}
+  .pill.opt{color:var(--muted)}
+  .pill.time{color:var(--ink);background:transparent;border-color:var(--line)}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+
+  .chip-row{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .chip-row::-webkit-scrollbar{display:none}
+  .chip{flex:none;display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--surface);
+    color:var(--ink-soft);border-radius:999px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s}
+  .chip.active{background:var(--sea-deep);color:#fff;border-color:var(--sea-deep)}
+
+  /* ---------- Today dashboard ---------- */
+  .today-hero{border-radius:var(--radius);padding:18px;color:#fff;position:relative;overflow:hidden;
+    background:linear-gradient(135deg,var(--sea-deep),var(--teal));box-shadow:var(--shadow-lg)}
+  .today-hero::after{content:"";position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;
+    background:var(--grad-sun);opacity:.9}
+  .today-hero .k{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+  .today-hero .big{font-size:25px;font-weight:850;margin-top:4px;display:flex;align-items:center;gap:9px}
+  .today-hero .met{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;font-size:13px;position:relative;z-index:2}
+  .today-hero .met b{display:block;font-size:17px}
+  .countwrap{display:flex;align-items:baseline;gap:10px;margin-top:4px}
+  .countnum{font-size:44px;font-weight:850;line-height:1}
+  .countwrap .ico{width:20px;height:20px;align-self:center}
+
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+  .tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 10px;text-align:center;
+    cursor:pointer;transition:transform .15s,box-shadow .2s;box-shadow:var(--shadow)}
+  .tile:active{transform:scale(.95)}
+  .tile .ti{width:38px;height:38px;border-radius:11px;margin:0 auto 7px;display:grid;place-items:center;color:#fff}
+  .tile span{font-size:12px;font-weight:700;color:var(--ink-soft)}
+
+  /* ---------- Itinerary ---------- */
+  .day{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+  .day>summary{list-style:none;cursor:pointer;padding:15px 16px;display:flex;align-items:center;gap:13px}
+  .day>summary::-webkit-details-marker{display:none}
+  .day .daynum{flex:none;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;gap:2px;color:#fff;
+    background:linear-gradient(140deg,var(--sea),var(--teal))}
+  .day .daynum .di{display:grid;place-items:center;line-height:0}
+  .day .daynum small{font-size:9px;opacity:.9;font-weight:800;letter-spacing:.08em}
+  .day .dtitle{flex:1;min-width:0}
+  .day .dtitle h3{font-size:15.5px}
+  .day .dtitle p{margin:2px 0 0;font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .day .chev{flex:none;color:var(--muted);transition:transform .25s}
+  .day[open] .chev{transform:rotate(180deg)}
+  .day .body{padding:2px 16px 16px}
+  .day.is-today{border-color:var(--coral);box-shadow:0 0 0 2px rgba(239,111,83,.28),var(--shadow)}
+  .todaybadge{font-size:10px;font-weight:800;letter-spacing:.1em;color:#fff;background:var(--coral);padding:3px 8px;border-radius:999px;text-transform:uppercase}
+
+  .step{display:flex;gap:12px;padding:11px 0;border-top:1px dashed var(--line)}
+  .step:first-child{border-top:0}
+  .step .sic{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:var(--sea);
+    background:var(--surface-2);border:1px solid var(--line)}
+  html[data-theme="dark"] .step .sic{color:var(--aqua)}
+  .step .sc{flex:1;min-width:0}
+  .step .sc h4{font-size:14.5px;margin:0;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .step .sc p{margin:3px 0 0;font-size:13px;color:var(--ink-soft)}
+  .chk{appearance:none;flex:none;width:22px;height:22px;border-radius:7px;border:2px solid var(--line);background:var(--surface);
+    cursor:pointer;margin-top:6px;position:relative;transition:.2s}
+  .chk:checked{background:var(--teal);border-color:var(--teal)}
+  .chk:checked::after{content:"";position:absolute;left:6px;top:2px;width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .step.done .sc h4{text-decoration:line-through;opacity:.55}
+
+  .note{border-radius:var(--radius-sm);padding:11px 13px;font-size:13px;display:flex;gap:9px;align-items:flex-start;margin:12px 0}
+  .note .ni{flex:none;margin-top:1px;display:grid;place-items:center}
+  .note.tip{background:rgba(42,157,143,.10);border:1px solid rgba(42,157,143,.25);color:var(--ink)}
+  .note.tip .ni{color:var(--teal)}
+  html[data-theme="dark"] .note.tip .ni{color:var(--aqua)}
+  .note.warn{background:rgba(224,138,46,.12);border:1px solid rgba(224,138,46,.3);color:var(--ink)}
+  .note.warn .ni{color:var(--warn)}
+  .note.alt{background:rgba(27,122,143,.09);border:1px solid rgba(27,122,143,.22)}
+  .note.alt .ni{color:var(--sea)}
+  html[data-theme="dark"] .note.alt .ni{color:var(--aqua)}
+
+  /* buttons / links */
+  .btn{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:13px;padding:9px 13px;border-radius:11px;
+    border:1px solid var(--line);background:var(--surface-2);color:var(--ink);text-decoration:none;cursor:pointer;transition:.15s}
+  .btn:active{transform:scale(.96)}
+  .btn.map{color:var(--sea);border-color:rgba(27,122,143,.3);background:rgba(27,122,143,.08)}
+  .btn.pri{background:var(--sea-deep);color:#fff;border-color:var(--sea-deep)}
+  .btn-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+
+  /* generic list rows */
+  .row{display:flex;gap:12px;padding:13px 0;border-top:1px solid var(--line)}
+  .row:first-child{border-top:0}
+  .row .ri{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff}
+  .row .rc{flex:1;min-width:0}
+  .row .rc h4{font-size:15px;margin:0;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+  .row .rc p{margin:3px 0 0;font-size:13px;color:var(--ink-soft)}
+  .kv{font-size:12.5px;color:var(--muted)}
+  .kv b{color:var(--ink-soft)}
+
+  /* line map schematic */
+  .linemap{width:100%;height:auto;display:block;border-radius:var(--radius-sm);background:var(--surface-2);border:1px solid var(--line)}
+  .linemap text{fill:var(--ink)}
+  .linemap .muted-lbl{fill:var(--muted)}
+  html[data-theme="dark"] .linemap circle[data-dot="deep"]{fill:#2f6f8c}
+
+  /* budget */
+  .brow{display:flex;align-items:center;gap:10px;padding:11px 0;border-top:1px solid var(--line)}
+  .brow:first-child{border-top:0}
+  .brow .bl{flex:1;min-width:0}
+  .brow .bl h4{font-size:14px;margin:0}
+  .brow .bl p{margin:2px 0 0;font-size:11.5px;color:var(--muted)}
+  .cur{position:relative;flex:none}
+  .cur::before{content:"€";position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:700;font-size:13px}
+  .cur input{width:94px;padding:9px 10px 9px 22px;border:1px solid var(--line);border-radius:11px;background:var(--surface-2);
+    color:var(--ink);font-size:14px;font-weight:700;text-align:right;font-family:inherit}
+  .cur input:focus{outline:2px solid var(--aqua);border-color:var(--aqua)}
+  .toggle{display:flex;align-items:center;gap:10px;justify-content:space-between;padding:12px 0;border-top:1px solid var(--line)}
+  .sw{appearance:none;width:46px;height:27px;border-radius:999px;background:var(--line);position:relative;cursor:pointer;flex:none;transition:.2s}
+  .sw:checked{background:var(--teal)}
+  .sw::after{content:"";position:absolute;top:3px;left:3px;width:21px;height:21px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+  .sw:checked::after{transform:translateX(19px)}
+  .total-card{background:linear-gradient(135deg,var(--sea-deep),var(--teal));color:#fff;border-radius:var(--radius);padding:18px;
+    box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+  .total-card::after{content:"";position:absolute;right:-24px;bottom:-30px;width:120px;height:120px;border-radius:50%;background:var(--grad-sun)}
+  .total-card .grid{display:flex;gap:20px;margin-top:6px;position:relative;z-index:2;flex-wrap:wrap}
+  .total-card .grid div b{display:block;font-size:24px;font-weight:850}
+  .total-card .grid div span{font-size:11.5px;opacity:.9;letter-spacing:.05em;text-transform:uppercase}
+
+  /* phrases */
+  .phrase{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+  .phrase:first-child{border-top:0}
+  .phrase .hr{font-weight:800;color:var(--sea-deep)}
+  html[data-theme="dark"] .phrase .hr{color:var(--aqua)}
+  .phrase .en{color:var(--muted);font-size:13px;text-align:right}
+
+  /* emergency */
+  .sos{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:6px}
+  .sos a{display:flex;align-items:center;gap:10px;padding:12px;border-radius:14px;text-decoration:none;font-weight:700;
+    background:rgba(214,69,59,.10);border:1px solid rgba(214,69,59,.28);color:var(--danger)}
+  .sos a .si{flex:none;display:grid;place-items:center}
+  .sos a b{display:block;font-size:18px;color:var(--ink)}
+  .sos a .lbl{font-size:11px;color:var(--muted);font-weight:600}
+
+  footer{color:var(--muted);font-size:11.5px;text-align:center;padding:18px 16px 8px;line-height:1.6}
+
+  /* ---------- Bottom nav ---------- */
+  nav.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;height:calc(var(--nav-h) + env(safe-area-inset-bottom));
+    padding-bottom:env(safe-area-inset-bottom);display:flex;background:var(--glass);
+    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-top:1px solid var(--glass-brd)}
+  nav.tabbar button{flex:1;background:none;border:0;color:var(--muted);display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:3px;font-size:10.5px;font-weight:700;cursor:pointer;padding-top:6px;transition:color .2s}
+  nav.tabbar button .ni{display:grid;place-items:center;transition:transform .2s}
+  nav.tabbar button.active{color:var(--sea-deep)}
+  html[data-theme="dark"] nav.tabbar button.active{color:var(--aqua)}
+  nav.tabbar button.active .ni{transform:translateY(-2px)}
+  nav.tabbar button.active::before{content:"";position:absolute;top:0;width:26px;height:3px;border-radius:0 0 4px 4px;background:var(--coral)}
+
+  .divider{height:1px;background:var(--line);margin:16px 0}
+  .muted{color:var(--muted)}
+  .center{text-align:center}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-top">
+    <div class="brand"><span class="dot" data-ico="landmark"></span> PULA · ISTRIA</div>
+    <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle theme"></button>
+  </div>
+  <div class="hero-body">
+    <h1 id="heroTitle">Your Pula Getaway</h1>
+    <div class="hero-sub">
+      <span><span class="ico" data-ico-inline="calendar-days"></span><b>Thu 9 – Tue 14 July 2026</b></span>
+      <span>5 nights · 2 travellers</span>
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 640 40" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 26 Q80 8 160 22 T320 22 T480 22 T640 20 V40 H0 Z" fill="var(--bg)"/>
+  </svg>
+</header>
+
+<main>
+<div class="wrap">
+
+<!-- ============ TODAY ============ -->
+<section id="today" class="screen active section-pad">
+  <div id="todayCard"></div>
+
+  <div class="tiles" id="tiles">
+    <div class="tile" data-go="days"><div class="ti" style="background:linear-gradient(140deg,#1b7a8f,#2a9d8f)" data-ico="calendar-days"></div><span>Itinerary</span></div>
+    <div class="tile" data-go="explore" data-sub="beaches"><div class="ti" style="background:linear-gradient(140deg,#2a9d8f,#48cae4)" data-ico="umbrella"></div><span>Beaches</span></div>
+    <div class="tile" data-go="explore" data-sub="food"><div class="ti" style="background:linear-gradient(140deg,#c1502e,#ef6f53)" data-ico="utensils"></div><span>Eat &amp; drink</span></div>
+    <div class="tile" data-go="explore" data-sub="festival"><div class="ti" style="background:linear-gradient(140deg,#6a3d9a,#c1502e)" data-ico="clapperboard"></div><span>Film festival</span></div>
+    <div class="tile" data-go="explore" data-sub="move"><div class="ti" style="background:linear-gradient(140deg,#0a4d68,#1b7a8f)" data-ico="bus"></div><span>Getting around</span></div>
+    <div class="tile" data-go="budget"><div class="ti" style="background:linear-gradient(140deg,#e8a13a,#f4b23e)" data-ico="wallet"></div><span>Budget</span></div>
+  </div>
+
+  <div class="card">
+    <div class="eyebrow">Good to know</div>
+    <div class="row">
+      <div class="ri" style="background:linear-gradient(140deg,#0a4d68,#1b7a8f)" data-ico="bed-double"></div>
+      <div class="rc"><h4>Your base — Carlijeva 43</h4>
+      <p>Veruda / Vidikovac, southern Pula. Nearest bus stop <b>Palisina ulica</b> (~300 m, 4-min walk). Beaches &amp; old town both a short bus or ~30-min walk.</p>
+      <div class="btn-row">
+        <a class="btn map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=44.8497,13.8523"><span data-ico="map-pin"></span> Hotel in Maps</a>
+        <a class="btn map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=44.8504,13.8491"><span data-ico="map-pin"></span> Palisina stop</a>
+      </div></div>
+    </div>
+    <div class="row">
+      <div class="ri" style="background:linear-gradient(140deg,#e8a13a,#f4b23e)" data-ico="sun"></div>
+      <div class="rc"><h4>July weather</h4>
+      <p>Hot &amp; sunny — highs ~<b>29 °C</b>, sea a warm <b>~25 °C</b>, ~10 h of sun a day. Rain is rare. Pack for the beach; bring sun protection &amp; water.</p></div>
+    </div>
+  </div>
+
+  <div class="note tip"><span class="ni" data-ico="lightbulb"></span><div>This app works <b>fully offline</b> — add it to your home screen so you can open it any time in Pula without data. Your ticks &amp; budget edits save on your phone.</div></div>
+</section>
+
+<!-- ============ DAYS / ITINERARY ============ -->
+<section id="days" class="screen section-pad">
+  <div class="sec-head"><span class="ic" style="background:linear-gradient(140deg,#1b7a8f,#2a9d8f)" data-ico="calendar-days"></span>
+    <div><h2>Itinerary</h2><p>Relaxed pace · tap a day to expand · tick things off</p></div></div>
+  <div class="note alt"><span class="ni" data-ico="shuffle"></span><div>Three day-trips over a relaxed trip is a lot — treat <b>Kamenjak</b> and <b>Brijuni</b> as “pick the one you fancy.” Nothing here is compulsory; swap freely.</div></div>
+  <div id="daysList"></div>
+</section>
+
+<!-- ============ EXPLORE ============ -->
+<section id="explore" class="screen section-pad">
+  <div class="chip-row" id="exploreChips">
+    <button class="chip active" data-sub="move"><span class="ico" data-ico-inline="bus"></span> Getting around</button>
+    <button class="chip" data-sub="beaches"><span class="ico" data-ico-inline="umbrella"></span> Beaches</button>
+    <button class="chip" data-sub="food"><span class="ico" data-ico-inline="utensils"></span> Eat &amp; drink</button>
+    <button class="chip" data-sub="festival"><span class="ico" data-ico-inline="clapperboard"></span> Film festival</button>
+  </div>
+
+  <!-- Getting around -->
+  <div class="sub" data-sub="move">
+    <div class="sec-head"><span class="ic" style="background:linear-gradient(140deg,#0a4d68,#1b7a8f)" data-ico="bus"></span>
+      <div><h2>Getting around</h2><p>No car needed — buses, boats &amp; your feet</p></div></div>
+
+    <div class="card">
+      <div class="eyebrow">From your door</div>
+      <p class="lead" style="margin-top:6px">Your stop is <b>Palisina ulica</b> (~300 m from the hotel). One line does almost everything:</p>
+      <svg class="linemap" viewBox="0 0 340 210" role="img" aria-label="Schematic of bus Line 3 from your hotel">
+        <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b7a8f"/><stop offset="1" stop-color="#2a9d8f"/></linearGradient></defs>
+        <line x1="60" y1="30" x2="60" y2="182" stroke="url(#lg)" stroke-width="7" stroke-linecap="round"/>
+        <circle cx="60" cy="34" r="8" fill="#0a4d68" data-dot="deep"/><text x="78" y="30" font-size="12.5" font-weight="700" font-family="sans-serif">Bus terminal · Rovinj/Fažana buses</text>
+        <text x="78" y="45" class="muted-lbl" font-size="10.5" font-family="sans-serif">↑ north</text>
+        <circle cx="60" cy="74" r="8" fill="#c1502e"/><text x="78" y="78" font-size="12.5" font-weight="700" fill="#16232c" font-family="sans-serif">Arena &amp; Old Town</text>
+        <circle cx="60" cy="114" r="10" fill="#ef6f53" stroke="#fff" stroke-width="2"/><text x="82" y="118" font-size="12.5" font-weight="800" fill="#16232c" font-family="sans-serif">Palisina — YOU</text>
+        <circle cx="60" cy="154" r="8" fill="#2a9d8f"/><text x="78" y="158" font-size="12.5" font-weight="700" fill="#16232c" font-family="sans-serif">Zlatne Stijene beach</text>
+        <circle cx="60" cy="182" r="8" fill="#48cae4"/><text x="78" y="186" font-size="12.5" font-weight="700" fill="#16232c" font-family="sans-serif">Verudela beaches ↓ south</text>
+      </svg>
+      <div class="tags" style="margin-top:12px">
+        <span class="pill move">Line 3 · Vidikovac ⇄ Verudela</span>
+        <span class="pill move">Line 2 · also to centre</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow">Bus tickets (Pulapromet)</div>
+      <div class="row"><div class="ri" style="background:linear-gradient(140deg,#1b7a8f,#2a9d8f)" data-ico="ticket"></div>
+        <div class="rc"><h4>How to pay <span class="pill cost">€0.90–2</span></h4>
+        <p><b>€0.90</b> with a contactless bank card (tap on board) · <b>€1.50</b> if bought at a <i>Tisak</i> kiosk or shop.pulapromet.hr · <b>€2.00</b> from the driver in cash. One ticket = 1 hour, one direction.</p></div></div>
+      <div class="note tip"><span class="ni" data-ico="lightbulb"></span><div>Cheapest &amp; easiest: just tap a contactless card as you board. Keep small coins as backup.</div></div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow">Key connections</div>
+      <div class="row"><div class="ri" style="background:linear-gradient(140deg,#0a4d68,#1b7a8f)" data-ico="plane"></div>
+        <div class="rc"><h4>Airport → hotel</h4><p>~8 km, 15–20 min. Easiest for an evening arrival: <b>Bolt or taxi ~€15–20</b> straight to Carlijeva 43. (Airport shuttle is €6 but only to the centre, then a transfer.)</p></div></div>
+      <div class="row"><div class="ri" style="background:linear-gradient(140deg,#2a9d8f,#48cae4)" data-ico="umbrella"></div>
+        <div class="rc"><h4>To the beaches</h4><p><b>Line 3 / 2</b> → Verudela (Ambrela, Hawaii, Zlatne Stijene). <b>Line 1</b> → Stoja · <b>Line 4 / 6</b> → Valkane. Or just walk the Lungomare (~25–30 min).</p></div></div>
+      <div class="row"><div class="ri" style="background:linear-gradient(140deg,#1b7a8f,#c1502e)" data-ico="bus"></div>
+        <div class="rc"><h4>Day-trip buses (from the main terminal)</h4><p><b>Rovinj:</b> intercity bus ~€5, 30–40 min. <b>Brijuni:</b> city bus <b>#21</b> → Fažana, then park boat. <b>Kamenjak:</b> bus <b>#28</b> (sometimes #26) → Premantura.</p>
+        <div class="btn-row"><a class="btn map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=44.8709,13.8557"><span data-ico="map-pin"></span> Bus terminal</a></div></div></div>
+      <div class="row"><div class="ri" style="background:linear-gradient(140deg,#0a4d68,#6a3d9a)" data-ico="moon"></div>
+        <div class="rc"><h4>Late nights</h4><p>City buses thin out after ~23:00. After the Arena film, grab a <b>Bolt/taxi back to Veruda (~€8–10)</b> — the app works well in Pula.</p></div></div>
+    </div>
+  </div>
+
+  <!-- Beaches -->
+  <div class="sub" data-sub="beaches" hidden>
+    <div class="sec-head"><span class="ic" style="background:linear-gradient(140deg,#2a9d8f,#48cae4)" data-ico="umbrella"></span>
+      <div><h2>Beaches &amp; swimming</h2><p>Closest-to-you first · sea ~25 °C</p></div></div>
+    <div class="note warn"><span class="ni" data-ico="triangle-alert"></span><div>Istrian beaches are <b>pebbly / rocky</b>, not sandy. Pack <b>water shoes</b> (watch for sea urchins), water &amp; snacks — beach kiosks are pricey.</div></div>
+    <div id="beachList"></div>
+  </div>
+
+  <!-- Food -->
+  <div class="sub" data-sub="food" hidden>
+    <div class="sec-head"><span class="ic" style="background:linear-gradient(140deg,#c1502e,#ef6f53)" data-ico="utensils"></span>
+      <div><h2>Eat &amp; drink on a budget</h2><p>Istrian flavours without the tourist mark-up</p></div></div>
+    <div id="foodList"></div>
+    <div class="card">
+      <div class="eyebrow">Taste of Istria — order these</div>
+      <p class="lead" style="margin-top:6px"><b>Fuži / pljukanci</b> (hand-made pasta) with truffle or game sauce · <b>maneštra</b> (bean &amp; veg stew) · <b>Istrian pršut</b> (prosciutto) &amp; cheese · fresh grilled fish &amp; <b>black cuttlefish risotto</b> · <b>fritule</b> (little doughnuts). Wash down with <b>Malvazija</b> (white) or <b>Teran</b> (red) — ~€3–4 a glass.</p>
+      <div class="note tip"><span class="ni" data-ico="lightbulb"></span><div>Budget hacks: look for the midday <b>“gablec”</b> workers’ lunch menu · picnic from the <b>market &amp; a bakery</b> · tap water is free &amp; safe (ask for it) · sit one street back from the Forum for lower prices.</div></div>
+    </div>
+  </div>
+
+  <!-- Festival -->
+  <div class="sub" data-sub="festival" hidden>
+    <div class="sec-head"><span class="ic" style="background:linear-gradient(140deg,#6a3d9a,#c1502e)" data-ico="clapperboard"></span>
+      <div><h2>Pula Film Festival</h2><p>73rd edition · 9–16 July 2026 · you’re here for it!</p></div></div>
+    <div class="today-hero" style="background:linear-gradient(135deg,#3a1d5c,#0a4d68)">
+      <div class="k">The unmissable bit</div>
+      <div class="big"><span class="ico" data-ico-inline="clapperboard"></span> A film in the Roman Arena</div>
+      <p style="margin:8px 0 0;font-size:13.5px;opacity:.95">Open-air cinema inside a 2,000-year-old amphitheatre — one of only two in the world still used this way. Deeply romantic and only <b>€6 a ticket</b>.</p>
+    </div>
+    <div class="card">
+      <div class="row"><div class="ri" style="background:linear-gradient(140deg,#6a3d9a,#c1502e)" data-ico="ticket"></div>
+        <div class="rc"><h4>Tickets <span class="pill cost">€6 · Arena</span></h4><p>Buy online (official festival site), at the <b>Giardini Info Point</b>, or the <b>kiosk in front of the Arena</b>. On-site sales run 9:00–13:00 &amp; 18:00–24:00. Popular nights sell out — <b>buy earlier in the day</b>.</p></div></div>
+      <div class="row"><div class="ri" style="background:linear-gradient(140deg,#0a4d68,#1b7a8f)" data-ico="clock"></div>
+        <div class="rc"><h4>Timing</h4><p>Arena screenings start after dusk (~<b>21:30</b>). Arrive ~30 min early for good seats and bring a light layer. Films are Croatian premieres (often English-subtitled) &amp; international titles — check the day’s programme at the Info Point.</p></div></div>
+      <div class="row"><div class="ri" style="background:linear-gradient(140deg,#2a9d8f,#48cae4)" data-ico="clapperboard"></div>
+        <div class="rc"><h4>Other venues</h4><p>150+ screenings across town — <b>Valli Cinema</b>, <b>Istrian National Theatre</b>, and open-air <b>Ambrela</b>. Some outdoor programmes are free.</p></div></div>
+      <div class="note tip"><span class="ni" data-ico="heart"></span><div>Perfect romantic evening: early dinner in the old town → stroll the lit-up Forum → film under the stars.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BUDGET ============ -->
+<section id="budget" class="screen section-pad">
+  <div class="sec-head"><span class="ic" style="background:linear-gradient(140deg,#e8a13a,#f4b23e)" data-ico="wallet"></span>
+    <div><h2>Budget</h2><p>Estimate for 2 · edit any number · saves on your phone</p></div></div>
+
+  <div class="total-card">
+    <div class="k" style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.9">Trip total · 2 people</div>
+    <div class="grid">
+      <div><b id="btTotal">€0</b><span>Total (excl. hotel)</span></div>
+      <div><b id="btDay">€0</b><span>Per day</span></div>
+      <div><b id="btPer">€0</b><span>Per person</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="eyebrow">On-the-ground costs (whole trip, for two)</div>
+    <div id="budgetRows"></div>
+    <div class="toggle">
+      <div class="bl"><h4>Add Brijuni Islands day-trip</h4><p>Official park boat + guided tour · €50 pp — the splurge option</p></div>
+      <input type="checkbox" class="sw" id="brijuniSw" />
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="brow"><div class="bl"><h4>Hotel (already booked)</h4><p>Enter it here only if you want the full picture</p></div>
+      <label class="cur"><input type="number" inputmode="numeric" id="b_hotel" data-def="0" min="0" /></label></div>
+    <div class="note tip"><span class="ni" data-ico="lightbulb"></span><div>Defaults are deliberately <b>cheap-first</b>: bakery breakfasts, market picnics, konoba/pizza dinners, buses over taxis. Tweak to match your style.</div></div>
+    <button class="btn" id="resetBudget" style="margin-top:12px"><span data-ico="rotate-ccw"></span> Reset to defaults</button>
+  </div>
+</section>
+
+<!-- ============ INFO ============ -->
+<section id="info" class="screen section-pad">
+  <div class="chip-row" id="infoChips">
+    <button class="chip active" data-sub="practical"><span class="ico" data-ico-inline="info"></span> Practical</button>
+    <button class="chip" data-sub="phrases"><span class="ico" data-ico-inline="languages"></span> Croatian</button>
+    <button class="chip" data-sub="packing"><span class="ico" data-ico-inline="backpack"></span> Packing</button>
+  </div>
+
+  <!-- Practical -->
+  <div class="sub" data-sub="practical">
+    <div class="card">
+      <div class="eyebrow" style="color:var(--danger)">Emergency</div>
+      <div class="sos">
+        <a href="tel:112"><span class="si" data-ico="triangle-alert"></span><div><b>112</b><span class="lbl">All emergencies</span></div></a>
+        <a href="tel:194"><span class="si" data-ico="ambulance"></span><div><b>194</b><span class="lbl">Ambulance</span></div></a>
+        <a href="tel:192"><span class="si" data-ico="shield"></span><div><b>192</b><span class="lbl">Police</span></div></a>
+        <a href="tel:193"><span class="si" data-ico="flame"></span><div><b>193</b><span class="lbl">Fire</span></div></a>
+      </div>
+      <p class="kv" style="margin-top:10px">112 works for anything and has English operators. Pharmacies = <b>“Ljekarna”</b>. Pula is very safe; take normal precautions.</p>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow">Essentials</div>
+      <div class="row"><div class="ri" style="background:linear-gradient(140deg,#e8a13a,#f4b23e)" data-ico="euro"></div>
+        <div class="rc"><h4>Money</h4><p>Croatia uses the <b>Euro (€)</b>. Cards accepted widely; carry some cash for buses, markets &amp; small konobas. Use <b>bank ATMs</b> — decline “conversion”, and avoid standalone Euronet machines (poor rates).</p></div></div>
+      <div class="row"><div class="ri" style="background:linear-gradient(140deg,#1b7a8f,#2a9d8f)" data-ico="wifi"></div>
+        <div class="rc"><h4>Phone &amp; internet</h4><p>Croatia is in the EU (roam-free for EU SIMs). <b>Swiss SIMs are not EU</b> — data can be pricey, so consider a cheap <b>Croatia/EU eSIM</b> or check your plan. Free Wi-Fi in most cafés &amp; the hotel.</p></div></div>
+      <div class="row"><div class="ri" style="background:linear-gradient(140deg,#0a4d68,#1b7a8f)" data-ico="plug"></div>
+        <div class="rc"><h4>Power</h4><p>Sockets are <b>Type C / F, 230 V</b> (standard EU). Coming from Switzerland? Your <b>Swiss plugs need a small adapter</b>; most USB chargers (Europlug) fit fine.</p></div></div>
+      <div class="row"><div class="ri" style="background:linear-gradient(140deg,#2a9d8f,#48cae4)" data-ico="droplet"></div>
+        <div class="rc"><h4>Water &amp; sun</h4><p><b>Tap water is safe</b> &amp; tastes fine — refill a bottle. July sun is strong: SPF, hat, midday shade, and drink plenty.</p></div></div>
+      <div class="row"><div class="ri" style="background:linear-gradient(140deg,#c1502e,#ef6f53)" data-ico="coins"></div>
+        <div class="rc"><h4>Tipping</h4><p>Not obligatory. Round up or leave ~<b>10%</b> for good service in restaurants.</p></div></div>
+      <div class="row"><div class="ri" style="background:linear-gradient(140deg,#6a3d9a,#c1502e)" data-ico="languages"></div>
+        <div class="rc"><h4>Language</h4><p>Croatian — but this is Istria, so <b>Italian is widely spoken</b> and English is common in tourism. A few Croatian words go a long way (see the Croatian tab).</p></div></div>
+    </div>
+  </div>
+
+  <!-- Phrases -->
+  <div class="sub" data-sub="phrases" hidden>
+    <div class="sec-head"><span class="ic" style="background:linear-gradient(140deg,#6a3d9a,#c1502e)" data-ico="languages"></span>
+      <div><h2>Handy Croatian</h2><p>Locals love the effort</p></div></div>
+    <div class="card" id="phraseList"></div>
+  </div>
+
+  <!-- Packing -->
+  <div class="sub" data-sub="packing" hidden>
+    <div class="sec-head"><span class="ic" style="background:linear-gradient(140deg,#2a9d8f,#48cae4)" data-ico="backpack"></span>
+      <div><h2>Packing checklist</h2><p>Tap to tick · saves automatically</p></div></div>
+    <div class="card" id="packList"></div>
+    <button class="btn" id="resetPack" style="margin:2px 0 8px"><span data-ico="rotate-ccw"></span> Clear all ticks</button>
+  </div>
+</section>
+
+<footer>
+  Made for your Pula trip · 9–14 July 2026 · works offline<br/>
+  Prices &amp; times were accurate when built — double-check festival programmes &amp; bus times locally.
+</footer>
+
+</div><!-- /wrap -->
+</main>
+
+<!-- ============ TAB BAR ============ -->
+<nav class="tabbar" id="tabbar">
+  <button data-tab="today" class="active" style="position:relative"><span class="ni" data-ico="house"></span>Today</button>
+  <button data-tab="days" style="position:relative"><span class="ni" data-ico="calendar-days"></span>Days</button>
+  <button data-tab="explore" style="position:relative"><span class="ni" data-ico="compass"></span>Explore</button>
+  <button data-tab="budget" style="position:relative"><span class="ni" data-ico="wallet"></span>Budget</button>
+  <button data-tab="info" style="position:relative"><span class="ni" data-ico="info"></span>Info</button>
+</nav>
+
+<script>
+"use strict";
+(function(){
+  /* ---------------- ICONS (Lucide, ISC) ---------------- */
+  var ICONS={
+'house':'<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />',
+'calendar-days':'<path d="M8 2v4" /><path d="M16 2v4" /><rect width="18" height="18" x="3" y="4" rx="2" /><path d="M3 10h18" /><path d="M8 14h.01" /><path d="M12 14h.01" /><path d="M16 14h.01" /><path d="M8 18h.01" /><path d="M12 18h.01" /><path d="M16 18h.01" />',
+'compass':'<circle cx="12" cy="12" r="10" /><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" />',
+'wallet':'<path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" /><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" />',
+'info':'<circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" />',
+'landmark':'<path d="M10 18v-7" /><path d="M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z" /><path d="M14 18v-7" /><path d="M18 18v-7" /><path d="M3 22h18" /><path d="M6 18v-7" />',
+'moon':'<path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />',
+'sun':'<circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />',
+'umbrella':'<path d="M12 13v7a2 2 0 0 0 4 0" /><path d="M12 2v2" /><path d="M20.992 13a1 1 0 0 0 .97-1.274 10.284 10.284 0 0 0-19.923 0A1 1 0 0 0 3 13z" />',
+'utensils':'<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" /><path d="M7 2v20" /><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />',
+'clapperboard':'<path d="m12.296 3.464 3.02 3.956" /><path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3z" /><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><path d="m6.18 5.276 3.1 3.899" />',
+'bus':'<path d="M8 6v6" /><path d="M15 6v6" /><path d="M2 12h19.6" /><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3" /><circle cx="7" cy="18" r="2" /><path d="M9 18h5" /><circle cx="16" cy="18" r="2" />',
+'bed-double':'<path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8" /><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4" /><path d="M12 4v6" /><path d="M2 18h20" />',
+'lightbulb':'<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" /><path d="M9 18h6" /><path d="M10 22h4" />',
+'map-pin':'<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" />',
+'ticket':'<path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" /><path d="M13 5v2" /><path d="M13 17v2" /><path d="M13 11v2" />',
+'plane':'<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z" />',
+'triangle-alert':'<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /><path d="M12 9v4" /><path d="M12 17h.01" />',
+'backpack':'<path d="M4 10a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" /><path d="M8 10h8" /><path d="M8 18h8" /><path d="M8 22v-6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v6" /><path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" />',
+'languages':'<path d="m5 8 6 6" /><path d="m4 14 6-6 2-3" /><path d="M2 5h12" /><path d="M7 2h1" /><path d="m22 22-5-10-5 10" /><path d="M14 18h6" />',
+'clock':'<circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" />',
+'heart':'<path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />',
+'shuffle':'<path d="m18 14 4 4-4 4" /><path d="m18 2 4 4-4 4" /><path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22" /><path d="M2 6h1.972a4 4 0 0 1 3.6 2.2" /><path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45" />',
+'arrow-right':'<path d="M5 12h14" /><path d="m12 5 7 7-7 7" />',
+'rotate-ccw':'<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" />',
+'ambulance':'<path d="M10 10H6" /><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" /><path d="M19 18h2a1 1 0 0 0 1-1v-3.28a1 1 0 0 0-.684-.948l-1.923-.641a1 1 0 0 1-.578-.502l-1.539-3.076A1 1 0 0 0 16.382 8H14" /><path d="M8 8v4" /><path d="M9 18h6" /><circle cx="17" cy="18" r="2" /><circle cx="7" cy="18" r="2" />',
+'shield':'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />',
+'flame':'<path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4" />',
+'euro':'<path d="M4 10h12" /><path d="M4 14h9" /><path d="M19 6a7.7 7.7 0 0 0-5.2-2A7.9 7.9 0 0 0 6 12c0 4.4 3.5 8 7.8 8 2 0 3.8-.8 5.2-2" />',
+'wifi':'<path d="M12 20h.01" /><path d="M2 8.82a15 15 0 0 1 20 0" /><path d="M5 12.859a10 10 0 0 1 14 0" /><path d="M8.5 16.429a5 5 0 0 1 7 0" />',
+'plug':'<path d="M12 22v-5" /><path d="M15 8V2" /><path d="M17 8a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z" /><path d="M9 8V2" />',
+'droplet':'<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z" />',
+'coins':'<path d="M13.744 17.736a6 6 0 1 1-7.48-7.48" /><path d="M15 6h1v4" /><path d="m6.134 14.768.866-.5 2 3.464" /><circle cx="16" cy="8" r="6" />',
+'car':'<path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" /><circle cx="7" cy="17" r="2" /><path d="M9 17h6" /><circle cx="17" cy="17" r="2" />',
+'sunset':'<path d="M12 10V2" /><path d="m4.93 10.93 1.41 1.41" /><path d="M2 18h2" /><path d="M20 18h2" /><path d="m19.07 10.93-1.41 1.41" /><path d="M22 22H2" /><path d="m16 6-4 4-4-4" /><path d="M16 18a4 4 0 0 0-8 0" />',
+'pizza':'<path d="m12 14-1 1" /><path d="m13.75 18.25-1.25 1.42" /><path d="M17.775 5.654a15.68 15.68 0 0 0-12.121 12.12" /><path d="M18.8 9.3a1 1 0 0 0 2.1 7.7" /><path d="M21.964 20.732a1 1 0 0 1-1.232 1.232l-18-5a1 1 0 0 1-.695-1.232A19.68 19.68 0 0 1 15.732 2.037a1 1 0 0 1 1.232.695z" />',
+'footprints':'<path d="M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z" /><path d="M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z" /><path d="M16 17h4" /><path d="M4 13h4" />',
+'route':'<circle cx="6" cy="19" r="3" /><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" /><circle cx="18" cy="5" r="3" />',
+'castle':'<path d="M10 5V3" /><path d="M14 5V3" /><path d="M15 21v-3a3 3 0 0 0-6 0v3" /><path d="M18 3v8" /><path d="M18 5H6" /><path d="M22 11H2" /><path d="M22 9v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9" /><path d="M6 3v8" />',
+'wine':'<path d="M8 22h8" /><path d="M7 10h10" /><path d="M12 15v7" /><path d="M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z" />',
+'coffee':'<path d="M10 2v2" /><path d="M14 2v2" /><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1" /><path d="M6 2v2" />',
+'shopping-basket':'<path d="m15 11-1 9" /><path d="m19 11-4-7" /><path d="M2 11h20" /><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4" /><path d="M4.5 15.5h15" /><path d="m5 11 4-7" /><path d="m9 11 1 9" />',
+'palette':'<path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z" /><circle cx="13.5" cy="6.5" r=".5" fill="currentColor" /><circle cx="17.5" cy="10.5" r=".5" fill="currentColor" /><circle cx="6.5" cy="12.5" r=".5" fill="currentColor" /><circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />',
+'ice-cream-cone':'<path d="m7 11 4.08 10.35a1 1 0 0 0 1.84 0L17 11" /><path d="M17 7A5 5 0 0 0 7 7" /><path d="M17 7a2 2 0 0 1 0 4H7a2 2 0 0 1 0-4" />',
+'waves':'<path d="M2 12q2.5 2 5 0t5 0 5 0 5 0" /><path d="M2 19q2.5 2 5 0t5 0 5 0 5 0" /><path d="M2 5q2.5 2 5 0t5 0 5 0 5 0" />',
+'bike':'<circle cx="18.5" cy="17.5" r="3.5" /><circle cx="5.5" cy="17.5" r="3.5" /><circle cx="15" cy="5" r="1" /><path d="M12 17.5V14l-3-3 4-3 2 3h2" />',
+'trees':'<path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z" /><path d="M7 16v6" /><path d="M13 19v3" /><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5" />',
+'sailboat':'<path d="M10 2v15" /><path d="M7 22a4 4 0 0 1-4-4 1 1 0 0 1 1-1h16a1 1 0 0 1 1 1 4 4 0 0 1-4 4z" /><path d="M9.159 2.46a1 1 0 0 1 1.521-.193l9.977 8.98A1 1 0 0 1 20 13H4a1 1 0 0 1-.824-1.567z" />',
+'luggage':'<path d="M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2" /><path d="M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14" /><path d="M10 20h4" /><circle cx="16" cy="20" r="2" /><circle cx="8" cy="20" r="2" />'
+  };
+  function ico(n){ return '<svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">'+(ICONS[n]||ICONS['info'])+'</svg>'; }
+  function hydrateIcons(root){
+    var scope=root||document;
+    scope.querySelectorAll('[data-ico]').forEach(function(e){ e.innerHTML=ico(e.getAttribute('data-ico')); });
+    scope.querySelectorAll('[data-ico-inline]').forEach(function(e){ e.outerHTML=ico(e.getAttribute('data-ico-inline')); });
+  }
+
+  var LS = {
+    get:function(k,d){try{var v=localStorage.getItem("pula_"+k);return v===null?d:JSON.parse(v);}catch(e){return d;}},
+    set:function(k,v){try{localStorage.setItem("pula_"+k,JSON.stringify(v));}catch(e){}}
+  };
+  var $  = function(s,c){return (c||document).querySelector(s);};
+  var $$ = function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
+  function gmap(q){return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);}
+
+  /* ---------------- DATA ---------------- */
+  var ITINERARY = [
+    { d:"2026-07-09", dow:"THU", n:"Day 1", icon:"plane", title:"Arrival & first taste of Pula",
+      sum:"Land ~18:20 · settle in Veruda · easy first night",
+      steps:[
+        {t:"~18:20", ic:"plane", cls:"move", h:"Land at Pula Airport (PUY)", p:"Your Basel flight (dep 17:00) arrives early evening — same time zone, ~1h15 in the air.", map:"Pula Airport"},
+        {t:"", ic:"car", cls:"move", cost:"€15–20", h:"Airport → hotel", p:"Bolt or taxi straight to Carlijeva 43 (~€15–20, 15–20 min). Simplest after a flight.", map:"Carlijeva ulica 43, Pula, Croatia"},
+        {t:"", ic:"bed-double", cls:"", h:"Check in & freshen up", p:"Drop bags in Veruda, then head out for a gentle first evening."},
+        {t:"~20:00", ic:"sunset", cls:"free", h:"Sea-view stroll", p:"Wander down to Veruda marina / the Lungomare for your first Adriatic sunset — or bus into town to see the Arena lit up (free from outside).", map:"Lungomare, Pula"},
+        {t:"~21:00", ic:"pizza", cls:"", cost:"~€25–35 for 2", h:"Easy first dinner", p:"Budget-friendly: Pizzeria Jupiter (wood-fired pizza) if you go central, or a konoba near Veruda. Early night after travelling.", map:"Pizzeria Jupiter, Pula"}
+      ]},
+    { d:"2026-07-10", dow:"FRI", n:"Day 2", icon:"landmark", title:"Roman Pula on foot + Arena film night",
+      sum:"Old-town history walk · then a film in the Arena",
+      steps:[
+        {t:"~09:30", ic:"bus", cls:"move", cost:"~€1.50", h:"Into the old town", p:"Line 3 from Palisina → “Arena / Pula-Centar”, or a pretty ~30-min walk. Go earlier to beat the midday heat."},
+        {t:"", ic:"landmark", cls:"", cost:"~€10", h:"Pula Arena (inside)", p:"One of the best-preserved Roman amphitheatres on earth + underground exhibits. ~€10; open till 23:00. Buy online to skip the queue.", map:"Pula Arena"},
+        {t:"", ic:"landmark", cls:"", cost:"~€3", h:"Forum → Temple of Augustus", p:"Elegant 1st-century temple on the main square (~€3). Coffee on the Forum after.", map:"Temple of Augustus, Pula"},
+        {t:"", ic:"footprints", cls:"free", h:"Arch of the Sergii & lanes", p:"Wander Sergijevaca street, the Twin Gates and the old-town alleys — all free.", map:"Arch of the Sergii, Pula"},
+        {t:"~13:00", ic:"route", cls:"", cost:"€7", h:"Zerostrasse tunnels", p:"WWI tunnels under the city — a cool escape from the heat (€7).", map:"Zerostrasse, Pula"},
+        {t:"", ic:"castle", cls:"", cost:"€7", h:"Fort Kaštel + museum", p:"Star-shaped Venetian fort at the top — best panoramas over the terracotta roofs (€7). Combined Arena+Zerostrasse+Museum ticket ~€18 saves money.", map:"Kaštel Fortress, Pula"},
+        {t:"~18:30", ic:"wine", cls:"", cost:"~€3–4/glass", h:"Aperitivo", p:"A glass of Istrian Malvazija (~€3–4) and people-watch before dinner."},
+        {t:"~21:30", ic:"clapperboard", cls:"must", cost:"€6", h:"Film Festival in the Arena", p:"The romantic highlight — open-air cinema under the stars, €6. Buy tickets earlier in the day at the Giardini Info Point or Arena kiosk. Bolt back to Veruda ~€8–10.", map:"Pula Arena"}
+      ]},
+    { d:"2026-07-11", dow:"SAT", n:"Day 3", icon:"umbrella", title:"Beach & relax day",
+      sum:"Verudela coves · Lungomare walk · sunset",
+      steps:[
+        {t:"Morning", ic:"coffee", cls:"free", h:"Slow start", p:"Grab burek/pastries from a bakery. No rush today."},
+        {t:"", ic:"umbrella", cls:"free", h:"Verudela beaches", p:"~25–30 min walk or a few Line 3 stops. Ambrela (Blue Flag, facilities), Hawaii cove (Havajska), or quieter Zlatne Stijene flat rocks. Sea ~25 °C.", map:"44.8393,13.8320"},
+        {t:"", ic:"shopping-basket", cls:"cost", h:"Beach picnic + gelato", p:"Bring water & snacks from the market/bakery to save; treat yourselves to gelato (~€2)."},
+        {t:"Late PM", ic:"footprints", cls:"free", h:"Lungomare sunset walk", p:"Stroll the 4-km coastal promenade back toward Veruda — gorgeous golden-hour light."},
+        {t:"Evening", ic:"utensils", cls:"cost", h:"Relaxed dinner", p:"Traditional Konoba Boccaporta, or cheap fresh seafood at the market’s La Vita / Markat."}
+      ]},
+    { d:"2026-07-12", dow:"SUN", n:"Day 4", icon:"heart", title:"Rovinj day trip",
+      sum:"The Adriatic’s most romantic old town · by bus",
+      steps:[
+        {t:"~09:30", ic:"bus", cls:"move", h:"Bus to Rovinj", p:"From the main terminal (Line 3 gets you there). ~30–40 min, ~€5 one-way; buy a return (~€10). ~15 buses/day — check the Arriva app.", map:"44.8709,13.8557"},
+        {t:"", ic:"palette", cls:"free", h:"Explore the old town", p:"Candy-coloured harbour, cobbled lanes, artists’ Grisia street. Climb to St Euphemia church for the view."},
+        {t:"", ic:"ice-cream-cone", cls:"cost", h:"Budget lunch by the sea", p:"Bakery slice or a picnic on the rocks; gelato as you wander."},
+        {t:"", ic:"waves", cls:"free", h:"Dip near the old town", p:"Swim off the rocks around the old town or the Lone/Mulini bay."},
+        {t:"Sunset", ic:"sunset", cls:"must", h:"Rovinj sunset, then bus back", p:"One of the best sunsets on the coast. Check the last bus times before you relax into the evening."}
+      ]},
+    { d:"2026-07-13", dow:"MON", n:"Day 5", icon:"trees", title:"Nature day — Cape Kamenjak",
+      sum:"Wild coves & cliffs · free on foot/bike · (or Brijuni)",
+      steps:[
+        {t:"~09:30", ic:"bus", cls:"move", h:"Bus to Premantura", p:"Bus #28 (sometimes #26) from the main terminal, ~30 min, to Premantura village.", map:"44.7960,13.9130"},
+        {t:"", ic:"bike", cls:"cost", h:"Bike or walk into the park", p:"Rent a bike in Premantura (~€10–20) to reach the wild southern tip — pedestrians & cyclists enter FREE."},
+        {t:"", ic:"waves", cls:"free", h:"Coves, cliffs & swimming", p:"Turquoise water, hidden coves, safe swims, cliff-jumping spots, and the hidden Safari Bar in the trees. Bring water, food & sun cover — it’s wild nature."},
+        {t:"Alt", ic:"sailboat", cls:"opt", h:"Or: Brijuni Islands (splurge)", p:"Bus #21 → Fažana + national-park boat & guided tour (€50 pp, ~4h; book ahead, pick English). Tito’s islands, safari park, Roman ruins.", map:"44.9270,13.8080"},
+        {t:"Evening", ic:"wine", cls:"cost", h:"Sunset drink", p:"Back to Pula for an easy dinner and a seaside sundowner."}
+      ]},
+    { d:"2026-07-14", dow:"TUE", n:"Day 6", icon:"luggage", title:"Easy last day & late flight",
+      sum:"Market · last swim · fly out 21:30",
+      steps:[
+        {t:"Morning", ic:"luggage", cls:"", h:"Late checkout & bag drop", p:"Ask the hotel to store your bags so you’re free all day."},
+        {t:"", ic:"shopping-basket", cls:"free", h:"Pula central market (Tržnica)", p:"Produce, cheese, pršut & olive oil — great edible souvenirs. Then a last old-town wander.", map:"44.8686,13.8470"},
+        {t:"", ic:"waves", cls:"free", h:"Final swim", p:"One more dip near Veruda / the Lungomare while it’s warm."},
+        {t:"~13:00", ic:"utensils", cls:"cost", h:"Farewell Istrian lunch", p:"Treat yourselves — fuži with truffles or fresh fish. A nice-but-affordable send-off."},
+        {t:"~19:15", ic:"car", cls:"move", h:"Head to the airport", p:"Bolt/taxi (~€15–20). For a 21:30 flight, aim to be there ~19:30 (≈2h before). Dobar put!", map:"44.8935,13.9222"}
+      ]}
+  ];
+
+  var BEACHES = [
+    {n:"Ambrela (Verudela)", tag:"Blue Flag", cls:"free", col:"#2a9d8f", how:"~30-min walk or Line 3 · pebble", d:"The main Verudela beach — clean, family-friendly, with facilities, sunbeds & beach bars. Easiest all-rounder from your hotel.", map:"44.8393,13.8320"},
+    {n:"Hawaii (Havajska)", tag:"Scenic cove", cls:"free", col:"#48cae4", how:"Verudela peninsula · Line 3", d:"Dramatic cliff-backed cove with a lively beach bar and clear water — a local favourite for the setting.", map:"44.8375,13.8300"},
+    {n:"Zlatne Stijene", tag:"Quieter", cls:"free", col:"#1b7a8f", how:"A stop before Verudela on Line 3", d:"‘Golden Rocks’ — flat rocks for sunbathing, calm clear water, more laid-back. Between you and Verudela.", map:"44.8420,13.8360"},
+    {n:"Lungomare promenade", tag:"Right by you", cls:"free", col:"#0a4d68", how:"~10–20 min walk from the hotel", d:"A 4-km coastal path dotted with little rocky & pebble entries — perfect for morning swims and sunset walks.", map:"44.8460,13.8420"},
+    {n:"Valkane", tag:"Close to town", cls:"free", col:"#c1502e", how:"Bus 4 / 6 · promenade", d:"Pebble beach with a promenade and cafés, closer to the centre — a good combine-with-town option.", map:"44.8560,13.8360"},
+    {n:"Stoja", tag:"Rocky & pretty", cls:"free", col:"#6a3d9a", how:"Bus 1", d:"Rocky bathing spots on a leafy peninsula, popular with locals.", map:"44.8535,13.8300"},
+    {n:"Cape Kamenjak", tag:"Wildest · day trip", cls:"cost", col:"#e8a13a", how:"Bus #28 → Premantura (see Day 5)", d:"The most beautiful of all — untamed coves, cliffs & turquoise water at Istria’s southern tip. Free on foot/bike.", map:"44.7960,13.9130"}
+  ];
+
+  var FOOD = [
+    {n:"Pizzeria Jupiter", tag:"€", col:"#ef6f53", d:"Pula institution near the Arena — cheap, excellent wood-fired pizza, big portions, veg options. Perfect first night.", map:"44.8703,13.8460"},
+    {n:"Central Market — La Vita / Markat", tag:"€", col:"#2a9d8f", d:"Above/at the Tržnica: cheap fresh seafood upstairs, homey canteen dishes, and produce downstairs for picnics.", map:"44.8686,13.8470"},
+    {n:"Konoba Boccaporta", tag:"€€", col:"#c1502e", d:"Traditional Istrian konoba loved by locals — proper regional cooking, honest prices.", map:"44.8665,13.8490"},
+    {n:"Bakeries (Pekara)", tag:"€", col:"#e8a13a", d:"Burek, sandwiches & pastries for €1–3 — your budget breakfast & lunch friend, all over town.", map:"44.8690,13.8460"},
+    {n:"Gelato & the Forum cafés", tag:"€", col:"#48cae4", d:"Gelato ~€2. For coffee/wine with a view, sit one street back from the Forum for better prices.", map:"44.8690,13.8433"}
+  ];
+
+  var PHRASES = [
+    ["Bok","Hi / bye"],["Dobar dan","Good day"],["Hvala","Thank you"],["Molim","Please / you’re welcome"],
+    ["Doviđenja","Goodbye"],["Da / Ne","Yes / No"],["Oprostite","Excuse me / sorry"],
+    ["Govorite li engleski?","Do you speak English?"],["Molim, račun","The bill, please"],
+    ["Koliko košta?","How much is it?"],["Živjeli!","Cheers!"],["Jedan / dva","One / two"],
+    ["Plaža","Beach"],["Voda","Water"],["Pivo / vino","Beer / wine"],["Ukusno!","Delicious!"]
+  ];
+
+  var PACK = [
+    "Passport / ID card","Bank card + some euro cash","Phone + charger & EU/CH plug adapter","Power bank",
+    "Water shoes (rocky beaches!)","Swimwear ×2 & quick-dry towel","Reef-safe sunscreen SPF 30+","Sunhat & sunglasses",
+    "Reusable water bottle","Light layer for Arena evenings","One smarter outfit for a nice dinner","Comfy walking sandals/shoes",
+    "Small daypack for day trips","Any meds + basic first-aid","Downloaded offline map of Pula","This app added to your home screen"
+  ];
+
+  var BUDGET = [
+    {id:"transfers", h:"Airport transfers", p:"2× Bolt/taxi, airport ⇄ hotel", def:35},
+    {id:"buses",     h:"Local buses in Pula", p:"Lots of €0.90–1.50 hops, for two", def:25},
+    {id:"food",      h:"Food & drink", p:"~€45/day for two — bakeries, konobas, gelato, wine", def:250},
+    {id:"attractions",h:"Sights & tickets", p:"Arena, Zerostrasse, Kaštel, Temple (×2)", def:55},
+    {id:"festival",  h:"Arena film night", p:"2× festival tickets @ €6", def:12},
+    {id:"rovinj",    h:"Rovinj day trip", p:"2× return bus", def:20},
+    {id:"kamenjak",  h:"Kamenjak day trip", p:"Buses + bike rental for two", def:25},
+    {id:"misc",      h:"Market & souvenirs", p:"Olive oil, treats, extras", def:40}
+  ];
+  var BRIJUNI_COST = 110; // 2× €50 tour + ~€10 buses
+
+  /* ---------------- RENDER ---------------- */
+  function tagPill(cls){
+    var map={free:["free","Free"],cost:["cost","Paid"],move:["move","Travel"],must:["must","Must-do"],opt:["opt","Optional"]};
+    var m=map[cls]; return m?'<span class="pill '+m[0]+'">'+m[1]+'</span>':'';
+  }
+
+  function renderDays(){
+    var todayStr = localDateStr(new Date());
+    var html = ITINERARY.map(function(day,di){
+      var isToday = day.d===todayStr;
+      var steps = day.steps.map(function(s,si){
+        var key = "chk_"+di+"_"+si;
+        var done = LS.get(key,false);
+        var maps = s.map?'<a class="btn map" target="_blank" rel="noopener" href="'+gmap(s.map)+'">'+ico("map-pin")+' Map</a>':'';
+        return '<label class="step'+(done?' done':'')+'">'+
+          '<input type="checkbox" class="chk" data-key="'+key+'" '+(done?'checked':'')+'>'+
+          '<span class="sic">'+ico(s.ic)+'</span>'+
+          '<span class="sc"><h4>'+(s.t?'<span class="pill time">'+s.t+'</span>':'')+s.h+' '+tagPill(s.cls)+'</h4>'+
+          '<p>'+s.p+'</p>'+(maps?'<div class="btn-row">'+maps+'</div>':'')+'</span></label>';
+      }).join("");
+      return '<details class="day'+(isToday?' is-today':'')+'"'+(isToday?' open':'')+'>'+
+        '<summary><span class="daynum"><span class="di">'+ico(day.icon)+'</span><small>'+day.dow+'</small></span>'+
+        '<span class="dtitle"><h3>'+day.title+(isToday?' <span class="todaybadge">Today</span>':'')+'</h3><p>'+day.sum+'</p></span>'+
+        '<span class="chev">▾</span></summary>'+
+        '<div class="body"><div class="kv" style="margin:4px 0 6px">'+fmtDate(day.d)+'</div>'+steps+'</div></details>';
+    }).join("");
+    $("#daysList").innerHTML = html;
+    bindChecks();
+  }
+
+  function bindChecks(){
+    $$(".chk").forEach(function(c){
+      c.addEventListener("change",function(){
+        LS.set(c.getAttribute("data-key"), c.checked);
+        var step=c.closest(".step"); if(step) step.classList.toggle("done", c.checked);
+      });
+    });
+  }
+
+  function renderBeaches(){
+    $("#beachList").innerHTML = BEACHES.map(function(b){
+      return '<div class="card"><div class="row"><div class="ri" style="background:'+b.col+'">'+ico("umbrella")+'</div>'+
+        '<div class="rc"><h4>'+b.n+' <span class="pill '+(b.cls==="cost"?"cost":"free")+'">'+b.tag+'</span></h4>'+
+        '<p>'+b.d+'</p><div class="kv" style="margin-top:6px">'+ico("footprints")+' <b>'+b.how+'</b></div>'+
+        '<div class="btn-row"><a class="btn map" target="_blank" rel="noopener" href="'+gmap(b.map)+'">'+ico("map-pin")+' Open in Maps</a></div></div></div></div>';
+    }).join("");
+  }
+
+  function renderFood(){
+    $("#foodList").innerHTML = FOOD.map(function(f){
+      return '<div class="card"><div class="row"><div class="ri" style="background:'+f.col+'">'+ico("utensils")+'</div>'+
+        '<div class="rc"><h4>'+f.n+' <span class="pill cost">'+f.tag+'</span></h4><p>'+f.d+'</p>'+
+        '<div class="btn-row"><a class="btn map" target="_blank" rel="noopener" href="'+gmap(f.map)+'">'+ico("map-pin")+' Open in Maps</a></div></div></div></div>';
+    }).join("");
+  }
+
+  function renderPhrases(){
+    $("#phraseList").innerHTML = PHRASES.map(function(p){
+      return '<div class="phrase"><span class="hr">'+p[0]+'</span><span class="en">'+p[1]+'</span></div>';
+    }).join("");
+  }
+
+  function renderPack(){
+    $("#packList").innerHTML = PACK.map(function(item,i){
+      var key="pack_"+i, done=LS.get(key,false);
+      return '<label class="step'+(done?' done':'')+'" style="border-top-style:solid">'+
+        '<input type="checkbox" class="chk" data-key="'+key+'" '+(done?'checked':'')+'>'+
+        '<span class="sc"><h4>'+item+'</h4></span></label>';
+    }).join("");
+    bindChecks();
+  }
+
+  /* ---------------- BUDGET ---------------- */
+  function renderBudget(){
+    var saved = LS.get("budget",{});
+    $("#budgetRows").innerHTML = BUDGET.map(function(r){
+      var val = (saved[r.id]!=null)?saved[r.id]:r.def;
+      return '<div class="brow"><div class="bl"><h4>'+r.h+'</h4><p>'+r.p+'</p></div>'+
+        '<label class="cur"><input type="number" inputmode="numeric" min="0" data-bid="'+r.id+'" data-def="'+r.def+'" value="'+val+'"></label></div>';
+    }).join("");
+    var hv = LS.get("b_hotel",0); $("#b_hotel").value = hv;
+    $("#brijuniSw").checked = LS.get("brijuni",false);
+    $$("#budgetRows input, #b_hotel").forEach(function(inp){ inp.addEventListener("input", saveBudget); });
+    $("#brijuniSw").addEventListener("change", saveBudget);
+    computeBudget();
+  }
+  function saveBudget(){
+    var obj={};
+    $$("#budgetRows input").forEach(function(inp){ obj[inp.getAttribute("data-bid")] = num(inp.value); });
+    LS.set("budget",obj);
+    LS.set("b_hotel", num($("#b_hotel").value));
+    LS.set("brijuni", $("#brijuniSw").checked);
+    computeBudget();
+  }
+  function computeBudget(){
+    var sum=0;
+    $$("#budgetRows input").forEach(function(inp){ sum += num(inp.value); });
+    if($("#brijuniSw").checked) sum += BRIJUNI_COST;
+    var hotel = num($("#b_hotel").value);
+    var grand = sum + hotel;
+    $("#btTotal").textContent = "€"+fmt(grand);
+    $("#btDay").textContent   = "€"+fmt(Math.round(grand/6));
+    $("#btPer").textContent   = "€"+fmt(Math.round(grand/2));
+  }
+  function num(v){ v=parseFloat(v); return isNaN(v)||v<0?0:v; }
+  function fmt(n){ return (n||0).toLocaleString("en-US"); }
+
+  /* ---------------- TODAY ---------------- */
+  function localDateStr(d){
+    return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  }
+  function fmtDate(s){
+    var p=s.split("-"), d=new Date(+p[0],+p[1]-1,+p[2]);
+    return d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
+  }
+  function daysBetween(a,b){ return Math.round((b-a)/86400000); }
+
+  function renderToday(){
+    var now=new Date(); var todayStr=localDateStr(now);
+    var start=new Date(2026,6,9);
+    var today0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+    var el=$("#todayCard"); var idx=-1;
+    for(var i=0;i<ITINERARY.length;i++){ if(ITINERARY[i].d===todayStr){ idx=i; break; } }
+
+    if(idx>=0){
+      var day=ITINERARY[idx];
+      el.innerHTML='<div class="today-hero"><div class="k">Today · '+day.dow+' · '+day.n+'</div>'+
+        '<div class="big">'+ico(day.icon)+' '+day.title+'</div>'+
+        '<div class="met"><div><b>~29°</b><span>Air</span></div><div><b>25°</b><span>Sea</span></div><div><b>Sunny</b><span>Sky</span></div></div></div>'+
+        '<div class="note tip" style="margin-top:14px"><span class="ni">'+ico("arrow-right")+'</span><div><b>Up next:</b> '+day.steps[0].h+' — '+day.steps[0].p+'</div></div>'+
+        '<button class="btn pri" id="openToday" style="width:100%;justify-content:center;margin-top:2px">Open today’s full plan →</button>';
+      var b=$("#openToday"); if(b) b.addEventListener("click",function(){ go("days"); });
+      $("#heroTitle").textContent = day.title;
+    } else if(today0 < start){
+      var dd=daysBetween(today0,start);
+      el.innerHTML='<div class="today-hero"><div class="k">Countdown</div>'+
+        '<div class="countwrap"><span class="countnum">'+dd+'</span><span style="font-size:16px;font-weight:700">day'+(dd===1?"":"s")+' to Pula</span>'+ico("plane")+'</div>'+
+        '<div class="met"><div><b>9 Jul</b><span>Arrive</span></div><div><b>14 Jul</b><span>Return</span></div><div><b>5</b><span>Nights</span></div></div></div>'+
+        '<div class="note tip" style="margin-top:14px"><span class="ni">'+ico("clapperboard")+'</span><div>Great timing — your dates land inside the <b>Pula Film Festival</b>. Check the Explore → Film festival tab.</div></div>';
+      $("#heroTitle").textContent = dd+" day"+(dd===1?"":"s")+" to go!";
+    } else {
+      el.innerHTML='<div class="today-hero"><div class="k">Trip complete</div>'+
+        '<div class="big">'+ico("sunset")+' Dobar put!</div>'+
+        '<p style="margin:8px 0 0;font-size:13.5px;opacity:.95">Hope Pula was wonderful. Your itinerary &amp; notes are still here whenever you want to relive it.</p></div>';
+      $("#heroTitle").textContent = "Your Pula Getaway";
+    }
+  }
+
+  /* ---------------- NAV ---------------- */
+  function go(tab, sub){
+    $$(".screen").forEach(function(s){ s.classList.toggle("active", s.id===tab); });
+    $$("#tabbar button").forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-tab")===tab); });
+    if(sub){
+      if(tab==="explore") setSub("#exploreChips", sub);
+      if(tab==="info")    setSub("#infoChips", sub);
+    }
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+  function setSub(chipSel, sub){
+    var container=$(chipSel).closest(".screen");
+    $$(".chip",$(chipSel)).forEach(function(c){ c.classList.toggle("active", c.getAttribute("data-sub")===sub); });
+    $$(".sub",container).forEach(function(s){ s.hidden = s.getAttribute("data-sub")!==sub; });
+  }
+
+  function initNav(){
+    $$("#tabbar button").forEach(function(b){
+      b.addEventListener("click",function(){ go(b.getAttribute("data-tab")); });
+    });
+    $$(".tile").forEach(function(t){
+      t.addEventListener("click",function(){ go(t.getAttribute("data-go"), t.getAttribute("data-sub")); });
+    });
+    ["#exploreChips","#infoChips"].forEach(function(sel){
+      $$(".chip",$(sel)).forEach(function(c){
+        c.addEventListener("click",function(){ setSub(sel, c.getAttribute("data-sub")); });
+      });
+    });
+  }
+
+  /* ---------------- THEME ---------------- */
+  function initTheme(){
+    var saved=LS.get("theme",null);
+    var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var theme = saved || (prefersDark?"dark":"light");
+    applyTheme(theme);
+    $("#themeBtn").addEventListener("click",function(){
+      var t=document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark";
+      applyTheme(t); LS.set("theme",t);
+    });
+  }
+  function applyTheme(t){
+    document.documentElement.setAttribute("data-theme",t);
+    $("#themeBtn").innerHTML = ico(t==="dark"?"sun":"moon");
+    var m=$('meta[name=theme-color]'); if(m) m.setAttribute("content", t==="dark"?"#0c1922":"#0a4d68");
+  }
+
+  /* ---------------- RESET BUTTONS ---------------- */
+  function initResets(){
+    $("#resetBudget").addEventListener("click",function(){
+      LS.set("budget",{}); LS.set("b_hotel",0); LS.set("brijuni",false);
+      renderBudget();
+    });
+    $("#resetPack").addEventListener("click",function(){
+      PACK.forEach(function(_,i){ LS.set("pack_"+i,false); });
+      renderPack();
+    });
+  }
+
+  /* ---------------- INIT ---------------- */
+  document.addEventListener("DOMContentLoaded",function(){
+    renderToday();
+    renderDays();
+    renderBeaches();
+    renderFood();
+    renderPhrases();
+    renderPack();
+    renderBudget();
+    initNav();
+    initResets();
+    initTheme();
+    hydrateIcons();
+  });
+})();
+</script>
+</body>
+</html>
